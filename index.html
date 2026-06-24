@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diana Kniazeva — Cognitive Scientist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink:       #1a1a2e;
+      --paper:     #f5f3ef;
+      --mid:       #e8e4dc;
+      --accent:    #4a6fa5;
+      --accent2:   #8b6f4e;
+      --muted:     #7a7670;
+      --serif:     'Libre Baskerville', Georgia, serif;
+      --sans:      'DM Sans', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    /* ── SIDEBAR LAYOUT ── */
+    .layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      min-height: 100vh;
+    }
+
+    /* ── LEFT COLUMN ── */
+    .sidebar {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 52px 32px 52px 36px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    .sidebar-name {
+      font-family: var(--serif);
+      font-size: 1.55rem;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+
+    .sidebar-title {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-top: 6px;
+    }
+
+    .contact-block {
+      font-size: 0.82rem;
+      line-height: 2;
+      color: rgba(245,243,239,0.75);
+    }
+    .contact-block a {
+      color: rgba(245,243,239,0.75);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .contact-block a:hover { color: var(--paper); border-color: var(--accent); }
+
+    .nav { display: flex; flex-direction: column; gap: 4px; }
+    .nav a {
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(245,243,239,0.5);
+      text-decoration: none;
+      padding: 4px 0;
+      transition: color 0.2s;
+    }
+    .nav a:hover { color: var(--paper); }
+
+    .sidebar-skills {
+      margin-top: auto;
+    }
+
+    .skill-group { margin-bottom: 18px; }
+    .skill-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .skill-pill {
+      display: inline-block;
+      font-size: 0.73rem;
+      color: rgba(245,243,239,0.75);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 2px;
+      padding: 2px 8px;
+      margin: 2px 2px 2px 0;
+    }
+
+    /* ── MAIN COLUMN ── */
+    main {
+      padding: 52px 56px 80px 52px;
+      max-width: 780px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      margin-bottom: 56px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--mid);
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 16px;
+    }
+    .hero-summary {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      line-height: 1.75;
+      color: #2d2d2d;
+      font-style: italic;
+    }
+
+    /* ── SECTION ── */
+    section { margin-bottom: 52px; }
+
+    .section-heading {
+      font-family: var(--serif);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 22px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--mid);
+    }
+
+    /* ── ENTRY ── */
+    .entry { margin-bottom: 28px; }
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 2px;
+    }
+    .entry-title {
+      font-family: var(--serif);
+      font-size: 0.98rem;
+      font-weight: 700;
+    }
+    .entry-date {
+      font-size: 0.73rem;
+      color: var(--muted);
+      white-space: nowrap;
+      letter-spacing: 0.04em;
+    }
+    .entry-org {
+      font-size: 0.82rem;
+      color: var(--accent);
+      margin-bottom: 7px;
+    }
+    .entry-bullets {
+      list-style: none;
+      padding: 0;
+    }
+    .entry-bullets li {
+      font-size: 0.86rem;
+      color: #3a3a3a;
+      padding-left: 14px;
+      position: relative;
+      margin-bottom: 4px;
+    }
+    .entry-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent2);
+      font-size: 0.75rem;
+      line-height: 1.7;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-entry {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .edu-left .edu-degree {
+      font-family: var(--serif);
+      font-size: 0.98rem;
+      font-weight: 700;
+    }
+    .edu-left .edu-uni {
+      font-size: 0.82rem;
+      color: var(--accent);
+    }
+    .edu-right {
+      text-align: right;
+    }
+    .edu-gpa {
+      font-size: 1.1rem;
+      font-family: var(--serif);
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .edu-gpa-label {
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+    .edu-year { font-size: 0.73rem; color: var(--muted); }
+
+    /* ── PUBLICATIONS ── */
+    .pub {
+      font-size: 0.87rem;
+      line-height: 1.65;
+      margin-bottom: 14px;
+      padding-left: 14px;
+      border-left: 2px solid var(--accent);
+    }
+    .pub em { font-style: italic; }
+
+    /* ── CONFERENCES & CERTIFICATIONS ── */
+    .conf-entry, .cert-entry {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      font-size: 0.86rem;
+      margin-bottom: 8px;
+      gap: 8px;
+    }
+    .conf-venue { font-size: 0.76rem; color: var(--muted); display: block; }
+    .conf-date, .cert-date { font-size: 0.73rem; color: var(--muted); white-space: nowrap; }
+
+    /* ── LANGUAGES ── */
+    .lang-row {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .lang-item { font-size: 0.88rem; }
+    .lang-name { font-weight: 500; }
+    .lang-level { color: var(--muted); font-size: 0.78rem; }
+
+    /* ── VOLUNTEERING ── */
+    .vol-entry { margin-bottom: 10px; }
+    .vol-role { font-size: 0.88rem; font-weight: 500; }
+    .vol-org { font-size: 0.78rem; color: var(--muted); }
+    .vol-date { font-size: 0.73rem; color: var(--accent2); }
+
+    /* ── AWARD ── */
+    .award-entry { margin-bottom: 14px; }
+    .award-name { font-family: var(--serif); font-size: 0.98rem; font-weight: 700; }
+    .award-desc { font-size: 0.83rem; color: var(--muted); margin-top: 2px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 720px) {
+      .layout { grid-template-columns: 1fr; }
+      .sidebar { position: static; height: auto; }
+      main { padding: 36px 24px 60px; }
+      .lang-row { gap: 16px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
+    <div>
+      <div class="sidebar-name">Diana<br>Kniazeva</div>
+      <div class="sidebar-title">Cognitive Scientist</div>
+    </div>
+
+    <div class="contact-block">
+      <div>+7 (931) 290-27-50</div>
+      <div><a href="mailto:diana.kniazeva.spb@gmail.com">diana.kniazeva.spb@gmail.com</a></div>
+    </div>
+
+    <nav class="nav">
+      <a href="#research">Research</a>
+      <a href="#education">Education</a>
+      <a href="#publications">Publications</a>
+      <a href="#conferences">Conferences</a>
+      <a href="#training">Training</a>
+      <a href="#languages">Languages</a>
+      <a href="#volunteering">Volunteering</a>
+    </nav>
+
+    <div class="sidebar-skills">
+      <div class="skill-group">
+        <div class="skill-label">Research</div>
+        <span class="skill-pill">Experimental design</span>
+        <span class="skill-pill">Eye-tracking</span>
+        <span class="skill-pill">Academic writing</span>
+        <span class="skill-pill">Teaching</span>
+      </div>
+      <div class="skill-group">
+        <div class="skill-label">Software</div>
+        <span class="skill-pill">R</span>
+        <span class="skill-pill">Python</span>
+        <span class="skill-pill">PsychoPy</span>
+        <span class="skill-pill">SR Eyelink 1000+</span>
+      </div>
+      <div class="skill-group">
+        <div class="skill-label">Statistics</div>
+        <span class="skill-pill">Linear Mixed Models</span>
+        <span class="skill-pill">Bayesian Statistics</span>
+        <span class="skill-pill">Simulation Power Analysis</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── MAIN ── -->
+  <main>
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-eyebrow">Professional Summary</div>
+      <p class="hero-summary">Master's graduate in Cognitive Science with a perfect GPA and strong research background in cognitive psychology and psycholinguistics. Experienced in designing and conducting behavioral and eye-tracking experiments, with a solid command of statistical analysis and a deep theoretical curiosity. Passionate about evidence-based inquiry and continuously expanding methodological and analytical expertise.</p>
+    </div>
+
+    <!-- RESEARCH EXPERIENCE -->
+    <section id="research">
+      <h2 class="section-heading">Research Experience</h2>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Research Assistant</span>
+          <span class="entry-date">Sep 2024 – Present</span>
+        </div>
+        <div class="entry-org">Center for Language and Brain, HSE University</div>
+        <ul class="entry-bullets">
+          <li>Contributed to three research projects: literature reviews, experimental design, investigation, and analysis.</li>
+          <li>Prepared two manuscripts for peer-reviewed journals and presented at an international conference.</li>
+          <li>Developed educational materials for two master's courses on eye-tracking methodology.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Research Intern</span>
+          <span class="entry-date">Jul 2022 – Dec 2022</span>
+        </div>
+        <div class="entry-org">Institute for Cognitive Studies, Saint-Petersburg State University</div>
+        <ul class="entry-bullets">
+          <li>Enrolled over 50% of total participants for two eye-tracking experiments.</li>
+          <li>Mastered Eyelink DataViewer and R for data preprocessing and statistical analysis during the internship.</li>
+          <li>Continued post-internship: data analysis and manuscript writing.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+      <h2 class="section-heading">Education</h2>
+
+      <div class="edu-entry">
+        <div class="edu-left">
+          <div class="edu-degree">Master in Cognitive Studies</div>
+          <div class="edu-uni">Saint-Petersburg State University</div>
+          <div class="edu-year">Graduated 2024 — State-funded student</div>
+        </div>
+        <div class="edu-right">
+          <div class="edu-gpa">4.92 / 5.0</div>
+          <div class="edu-gpa-label">GPA</div>
+        </div>
+      </div>
+
+      <div class="edu-entry">
+        <div class="edu-left">
+          <div class="edu-degree">Bachelor in Cognitive Studies</div>
+          <div class="edu-uni">Saint-Petersburg State University</div>
+          <div class="edu-year">Graduated 2022 — State-funded student</div>
+        </div>
+        <div class="edu-right">
+          <div class="edu-gpa">4.96 / 5.0</div>
+          <div class="edu-gpa-label">GPA</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HONORS & AWARDS -->
+    <section id="awards">
+      <h2 class="section-heading">Honors &amp; Awards</h2>
+      <div class="award-entry">
+        <div class="award-name">Vladimir Potanin Foundation Scholarship</div>
+        <div class="award-desc">Feb 2026 – Jul 2026 · Awarded to outstanding Master's students of leading Russian universities</div>
+      </div>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section id="publications">
+      <h2 class="section-heading">Publications</h2>
+
+      <div class="pub">
+        Loshchinina V., Kniazeva D., Nikonova Y., Sycheva A., Pilipets P., Mamaev A., Alexeeva S., Lopukhina A. (in press). Exploring three types of perceptual span during silent reading in Russian. <em>Vestnik Tomskogo Gosudarstvennogo Universiteta</em>.
+      </div>
+
+      <div class="pub">
+        Kniazeva, D. V., Slioussar, N. A., &amp; Alexeeva, S. V. (under review). Substitution nonword priming as a function of letter position: evidence for morphological processing in Russian.
+      </div>
+    </section>
+
+    <!-- CONFERENCES -->
+    <section id="conferences">
+      <h2 class="section-heading">Conferences</h2>
+
+      <div class="conf-entry">
+        <div>
+          <span>Psycholinguistics of Slavic languages (PsychoSlav)</span>
+          <span class="conf-venue">University of Zadar, Croatia</span>
+        </div>
+        <span class="conf-date">May 2026</span>
+      </div>
+      <div class="conf-entry">
+        <div>
+          <span>Psychology of Cognition</span>
+          <span class="conf-venue">Demidov Yaroslavl State University</span>
+        </div>
+        <span class="conf-date">Dec 2024</span>
+      </div>
+      <div class="conf-entry">
+        <div>
+          <span>Problems of Ontolinguistics — 2023: Variability of Speech Ontogenesis</span>
+          <span class="conf-venue">Herzen University</span>
+        </div>
+        <span class="conf-date">Feb 2023</span>
+      </div>
+    </section>
+
+    <!-- TRAINING & CERTIFICATIONS -->
+    <section id="training">
+      <h2 class="section-heading">Training &amp; Certifications</h2>
+
+      <div class="cert-entry"><span>6th International School in Psycholinguistics, Neurolinguistics and Clinical Linguistics · University of Novi Sad, Serbia</span><span class="cert-date">Apr 2026</span></div>
+      <div class="cert-entry"><span>Research Data Management · Elsevier Researcher Academy</span><span class="cert-date">Dec 2025</span></div>
+      <div class="cert-entry"><span>HSE Academy of Beginning Teachers · HSE University</span><span class="cert-date">Nov 2025</span></div>
+      <div class="cert-entry"><span>Statistics in Psycho- and Neurolinguistics · HSE University</span><span class="cert-date">Oct 2025</span></div>
+      <div class="cert-entry"><span>MIX 2.0: Interdisciplinary Research in Cognitive and Social Sciences · HSE University</span><span class="cert-date">Oct 2025</span></div>
+      <div class="cert-entry"><span>Neurophysiology of Behaviour · Lomonosov Moscow State University</span><span class="cert-date">Nov 2024</span></div>
+      <div class="cert-entry"><span>Basics of Writing an Empirical Research Article in English · HSE University</span><span class="cert-date">Oct 2024</span></div>
+      <div class="cert-entry"><span>Karl Duncker Cognitive Summer School · Institute of Social Sciences, RANEPA</span><span class="cert-date">Aug 2024</span></div>
+      <div class="cert-entry"><span>Applied Cognitive Science Summer School · HSE University</span><span class="cert-date">Jul 2024</span></div>
+      <div class="cert-entry"><span>WLM — 2023: Data Analysis and Machine Learning for Researchers · HSE University</span><span class="cert-date">2023–2024</span></div>
+      <div class="cert-entry"><span>Basic Statistics · University of Amsterdam</span><span class="cert-date">Jun 2023</span></div>
+    </section>
+
+    <!-- LANGUAGES -->
+    <section id="languages">
+      <h2 class="section-heading">Languages</h2>
+      <div class="lang-row">
+        <div class="lang-item">
+          <span class="lang-name">English</span><br>
+          <span class="lang-level">C1 · IELTS Band 8</span>
+        </div>
+        <div class="lang-item">
+          <span class="lang-name">French</span><br>
+          <span class="lang-level">C1 · DALF</span>
+        </div>
+        <div class="lang-item">
+          <span class="lang-name">German</span><br>
+          <span class="lang-level">B2 · Goethe-Zertifikat</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- VOLUNTEERING -->
+    <section id="volunteering">
+      <h2 class="section-heading">Volunteering</h2>
+
+      <div class="vol-entry">
+        <span class="vol-role">Volunteer</span> · <span class="vol-org">Perspektiven e.V., Saint-Petersburg branch</span>
+        <span class="vol-date"> · 2025–Present</span>
+      </div>
+      <div class="vol-entry">
+        <span class="vol-role">Tour Guide</span> · <span class="vol-org">Dostoevsky Museum</span>
+        <span class="vol-date"> · 2024–2025</span>
+      </div>
+      <div class="vol-entry">
+        <span class="vol-role">Instructor</span> · <span class="vol-org">Extracurricular "Language &amp; Thinking" course</span>
+        <span class="vol-date"> · Sep–Oct 2023</span>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+</body>
+</html>
